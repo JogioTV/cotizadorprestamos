@@ -1,9 +1,11 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, TextInput, View} from 'react-native';
+import {Picker} from '@react-native-picker/picker';
 import colors from '../utils/colors';
 
 export default function Form() {
+  const [pickerValue, setPickerValue] = useState('java');
   return (
     <View style={styles.viewForm}>
       <View style={styles.viewInputs}>
@@ -18,6 +20,13 @@ export default function Form() {
           style={[styles.inputs, styles.inputPercentage]}
         />
       </View>
+      <Picker
+        selectedValue={pickerValue}
+        onValueChange={(itemValue) => setPickerValue(itemValue)}
+        mode="dialog">
+        <Picker.Item label="Java" value="java" />
+        <Picker.Item label="JavaScript" value="js" />
+      </Picker>
     </View>
   );
 }
