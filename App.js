@@ -3,8 +3,28 @@ import {StyleSheet, View, Text, SafeAreaView} from 'react-native';
 
 export default function App() {
   return (
-    <SafeAreaView>
-      <Text>Hola mi nombre es Jonathan!</Text>
-    </SafeAreaView>
+    <>
+      <SafeAreaView style={styles.safeArea}>
+        <Text>Formulario HEAD</Text>
+      </SafeAreaView>
+
+      <View>
+        <Text>Resultado</Text>
+      </View>
+
+      <View>
+        <Text>Footer</Text>
+      </View>
+    </>
   );
 }
+
+const styles = StyleSheet.create({
+  safeArea: {
+    backgroundColor: 'red',
+    height: 200,
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
+    alignItems: 'center',
+  },
+});
