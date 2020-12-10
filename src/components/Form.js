@@ -4,7 +4,8 @@ import {StyleSheet, TextInput, View} from 'react-native';
 import colors from '../utils/colors';
 import RNPickerSelect from 'react-native-picker-select';
 
-export default function Form() {
+export default function Form(props) {
+  const {setCapital, setInteres, setMeses} = props;
   return (
     <View style={styles.viewForm}>
       <View style={styles.viewInputs}>
@@ -12,16 +13,22 @@ export default function Form() {
           placeholder="Cantidad a pedir"
           keyboardType="numeric"
           style={styles.inputs}
+          onChange={(e) => {
+            setCapital(e.nativeEvent.text);
+          }}
         />
         <TextInput
           placeholder="Interes %"
           keyboardType="numeric"
           style={[styles.inputs, styles.inputPercentage]}
+          onChange={(e) => {
+            setInteres(e.nativeEvent.text);
+          }}
         />
       </View>
       <RNPickerSelect
         style={pickerSelectStyles}
-        onValueChange={(value) => console.log(value)}
+        onValueChange={(value) => setMeses(value)}
         items={[
           {label: '3 meses', value: 3},
           {label: '6 meses', value: 6},
