@@ -8,6 +8,7 @@ import {
   Button,
 } from 'react-native';
 import Form from './src/components/Form';
+import Footer from './src/components/Footer';
 import colors from './src/utils/colors';
 
 export default function App() {
@@ -15,7 +16,7 @@ export default function App() {
   const [interes, setInteres] = useState(null);
   const [meses, setMeses] = useState(null);
 
-  const onSubmit = () => {
+  const calculate = () => {
     console.log('capital->', capital);
     console.log('interes->', interes);
     console.log('meses->', meses);
@@ -34,10 +35,8 @@ export default function App() {
       <View>
         <Text>Resultado</Text>
       </View>
-      <View>
-        <Text>Footer</Text>
-        <Button title="Enviar" onPress={onSubmit} />
-      </View>
+
+      <Footer calculate={calculate} />
     </>
   );
 }
