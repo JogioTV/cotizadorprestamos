@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import Form from './src/components/Form';
 import Footer from './src/components/Footer';
+import ResultCalculation from './src/components/ResultCalculation';
 import colors from './src/utils/colors';
 
 export default function App() {
@@ -16,14 +17,16 @@ export default function App() {
   const [interes, setInteres] = useState(null);
   const [meses, setMeses] = useState(null);
   const [total, setTotal] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const calculate = () => {
+    reset();
     if (!capital) {
-      console.log('Añade la cantidad que quieres ingresar');
+      setErrorMessage('Añade la cantidad que quieres ingresar');
     } else if (!interes) {
-      console.log('Añade el interes del préstamo');
+      setErrorMessage('Añade el interes del préstamo');
     } else if (!meses) {
-      console.log('Selecciona los meses a pagar');
+      setErrorMessage('Selecciona los meses a pagar');
     } else {
       const i = interes / 100;
       const fee = capital / ((1 - Math.pow(i + 1, -meses)) / i);
@@ -34,7 +37,10 @@ export default function App() {
       });
     }
   };
-  console.log(total);
+  const reset = () => {
+    setErrorMessage('');
+    setTotal(null);
+  };
   return (
     <>
       <SafeAreaView style={styles.safeArea}>
@@ -46,9 +52,8 @@ export default function App() {
           setMeses={setMeses}
         />
       </SafeAreaView>
-      <View>
-        <Text>Resultado</Text>
-      </View>
+
+      <ResultCalculation errorMessage={errorMessage} />
 
       <Footer calculate={calculate} />
     </>
