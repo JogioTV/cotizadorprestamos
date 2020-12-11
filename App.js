@@ -53,7 +53,13 @@ export default function App() {
         />
       </SafeAreaView>
 
-      <ResultCalculation errorMessage={errorMessage} />
+      <ResultCalculation
+        capital={capital}
+        interes={interes}
+        meses={meses}
+        total={total}
+        errorMessage={errorMessage}
+      />
 
       <Footer calculate={calculate} />
     </>
